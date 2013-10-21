@@ -1,0 +1,144 @@
+#include <stdio.h>
+#include <conio.h> 
+#include <stdlib.h> //printf,scanf ve türevleri fonksiyonlar için
+#include <string.h> //strcmp fonksiyonu için
+
+int main()
+{  
+	printf("Sayin ESRA OZEYRANLİ\n");
+
+	int ad;
+	int sifre1=123;
+	int sifre2;
+	int sec;
+	int bakiye=2000;
+	int cekilentutar;
+	int yatirilantutar;
+	int gonderilentutar;
+	int no;
+	
+	char ad1[]="deneme";
+	char ad2[]="Esra";
+	int sayac=0; // tekrarlanan işlemin kaç defadan sonra sona erdirileceğini belirler
+
+	do //do içine yapılacak işlemler konulur
+	{
+		printf("\nKullanici Adinizi Giriniz:");
+		scanf("%s",&ad1);
+		printf("\nSifrenizi Giriniz:");	
+		scanf("%d",&sifre2);
+	
+		if((sifre1==sifre2) && (strcmp(ad1,ad2)==0))
+		{
+			printf("\nGiris Basarili");
+			printf("\nDevam Etmek icin bir tusa basin!");
+			getch();
+			system("CLS"); //kendinden önceki tüm satırların çıktısını siler
+
+			for(;;) // (sonsuz döngü) müdahale edilmedikçe menüyü sürekli döndürür
+			{
+
+				printf("\n\n\n");
+				printf("MENU\n");
+				printf("==========\n");
+				printf("1-Hesap Bakiyesi\n");
+				printf("2-Para Cekme\n");
+				printf("3-Para Yatirma\n");
+				printf("4-Para Transferi\n");
+				printf("5-CİKİS");
+				printf("\n\n");
+				printf("Bir islem seciniz (1/2/3/4/5):");
+				scanf("%d", &sec);
+				printf("\n");
+
+
+				switch(sec)  
+				{	
+
+				case 1:
+						printf("Hesap Bakiyeniz:%d TL \n",bakiye);
+						printf("\nDevam Etmek icin bir tusa basin!");
+						getch();
+						system("CLS");
+						break;
+
+				case 2:
+						printf("\nCekmek İstediginiz Tutari Giriniz:");
+						scanf("%d", &cekilentutar);
+						if (cekilentutar<=bakiye)
+					{  
+						bakiye=bakiye - cekilentutar;
+						printf("Kullanilabilir Bakiye=%d\n", bakiye);
+						printf("\nDevam Etmek icin bir tusa basin!");
+						getch();
+						system("CLS");
+					}
+	
+					if (cekilentutar>bakiye)
+					{
+						printf("Yetersiz Bakiye\nİsleminiz Gerceklestirilemiyor");
+						printf("\nDevam Etmek icin bir tusa basin!");
+						getch();
+						system("CLS");
+					}
+						break;
+
+				case 3:
+						printf("Yatirmak İstediginiz Miktari Giriniz:");
+						scanf("%d", &yatirilantutar);
+						bakiye=bakiye + yatirilantutar;
+						printf("Kullanilabilir Bakiye=%d\n",bakiye);
+						printf("\nDevam Etmek icin bir tusa basin!");
+						getch();
+						system("CLS");
+						break;
+
+				case 4:
+						printf("Hesap Numarasini Giriniz:");
+						scanf("%d",&no);
+						printf("\n");
+						printf("Gondermek İstediginiz Tutari Giriniz:");
+						scanf("%d",&gonderilentutar);
+
+					if (gonderilentutar<=bakiye)
+					{ 
+						bakiye=bakiye - gonderilentutar;
+						printf("Kullanilabilir Bakiye=%d\n", bakiye);
+						printf("\nDevam Etmek icin bir tusa basin!");
+						getch();
+						system("CLS");
+					}
+					if (gonderilentutar>bakiye)
+					{
+						printf("Yetersiz Bakiye\nİsleminiz Gerceklestirilemiyor");
+						printf("\nDevam Etmek icin bir tusa basin!");
+						getch();
+						system("CLS");
+					}
+					break;
+
+				case 5:
+					printf("\nCikis yapmak icin enter tusuna basin");
+					getch();
+					return 0;
+
+
+				default:
+					printf("1,2,3,4,5 disinda bir sayi girdiniz...\n");
+					break;
+
+				}
+			}
+
+		}
+		else
+		{
+			printf("Kullanici Adinizi veya Sifrenizi Yanlis Girdiniz\n");
+			printf("\nDevam Etmek icin bir tusa basin!");
+			getch();	
+			system("CLS");
+		}
+		sayac++;
+	}
+	while(sayac<3); //while içine de koşul yazılır / Yanlış 3 kullanici adı veya sifre denemesinden sonra programdan çıkılır.
+}
